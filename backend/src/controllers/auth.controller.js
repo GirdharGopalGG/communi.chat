@@ -2,6 +2,8 @@ import { userModel } from "../models/user.model.js"
 import bcrypt from "bcryptjs"
 import { generateToken } from "../lib/utils.js"
 
+
+
 export const signup = async(req,res)=>{
     const {fullName, email, password} = req.body
 
@@ -24,8 +26,8 @@ export const signup = async(req,res)=>{
         }
 
         if(newUser){
-            await newUser.save()
             generateToken(newUser._id,res)
+            await newUser.save()
 
             res.status(201).json({
                 newUser
@@ -33,7 +35,7 @@ export const signup = async(req,res)=>{
         }
         
     } catch (error) {
-        console.log( "Error in signup controller \n", error)
+        console.error( "Error in signup controller \n", error)
         res.status(500).json({
           message:"Internal server error"
         })
