@@ -1,5 +1,6 @@
 import { userModel } from "../models/user.model.js"
 import bcrypt from "bcryptjs"
+import { generateToken } from "../lib/utils.js"
 
 export const signup = async(req,res)=>{
     const {fullName, email, password} = req.body
@@ -14,7 +15,7 @@ export const signup = async(req,res)=>{
             password:hashedPassword
         })
 
-        const userExists = await userModel.findOne(email)
+        const userExists = await userModel.findOne({email})
 
         if(userExists){
             return res.status(400).json({
@@ -23,8 +24,8 @@ export const signup = async(req,res)=>{
         }
 
         if(newUser){
-            genereateToken()
             await newUser.save()
+            generateToken(newUser._id,res)
 
             res.status(201).json({
                 newUser
@@ -32,8 +33,9 @@ export const signup = async(req,res)=>{
         }
         
     } catch (error) {
-        res.status(400).json({
-            message:"error while signing up", error
+        console.log( "Error in signup controller \n", error)
+        res.status(500).json({
+          message:"Internal server error"
         })
     }
 }

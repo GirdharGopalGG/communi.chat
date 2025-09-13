@@ -12,6 +12,7 @@ export const validateRequest = (schema)=>{
                     message:error.errors[0].message
                 })
             }
+            console.log("Error in validateRequest fn in middleware",error)
             return res.status(500).json({
                 message:"Internal server error"
             })
