@@ -1,6 +1,7 @@
 import { userModel } from "../models/user.model.js"
 import bcrypt from "bcryptjs"
 import { generateToken } from "../lib/utils.js"
+import { sendWelcomeEmail } from "../lib/resend.js"
 
 
 
@@ -26,12 +27,18 @@ export const signup = async(req,res)=>{
         }
 
         if(newUser){
-            generateToken(newUser._id,res)
             await newUser.save()
+            generateToken(newUser._id,res)
 
             res.status(201).json({
                 newUser
             })
+
+            try {
+                sendWelcomeEmail(newUser.email,newUser.fullName,process.env.client_Url)
+            } catch (error) {
+                console.log("failed to send welcome email\n", error)
+            }
         }
         
     } catch (error) {

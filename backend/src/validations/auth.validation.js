@@ -31,7 +31,8 @@ export const signupSchema = z.object({
     .pipe(z.string().min(5, {error:"Full name must be at least 5 characters"}))   
     ,
 
-    email: z.email(),
+    //LOWERCASE EMAIL💀💀💀
+    email: z.email({error:"Real email daal"}),
 
     password: passwordSchema
 })
