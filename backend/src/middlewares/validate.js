@@ -1,5 +1,3 @@
-import { ZodError } from "zod"
-
 export const validateRequest = (schema)=>{
     return (req,res,next) =>{
         try{
@@ -10,7 +8,7 @@ export const validateRequest = (schema)=>{
                 
                 // Extract errors by field for frontend use
                 const fieldErrors = {}
-                const allMessages = []
+                const allMessages = []  
                 
                 errorArray.forEach(err => {
                     const fieldName = err.path[0] // Get field name from path
@@ -24,6 +22,7 @@ export const validateRequest = (schema)=>{
                     allMessages.push(message)
                 })
                 
+                console.log('Error in zod validation \n')
                 return res.status(400).json({
                     message: allMessages[0], // First error for general display
                     errors: fieldErrors,     // Errors grouped by field for forms

@@ -1,8 +1,7 @@
 import { userModel } from "../models/user.model.js"
 import bcrypt from "bcryptjs"
-import { generateToken } from "../lib/utils.js"
+import { generateToken } from "../lib/jwt.cookie.js"
 import { sendWelcomeEmail } from "../lib/resend.js"
-
 
 
 export const signup = async(req,res)=>{
@@ -47,4 +46,40 @@ export const signup = async(req,res)=>{
           message:"Internal server error"
         })
     }
+}
+
+export const login = async(req, res)=>{
+    const {email, password} = req.body
+    
+    try{
+    const user = await userModel.findOne({email})
+    if(!user){
+        return res.status(400).json({
+            message:"Invalid credentials"
+        })
+    }
+    const isPasswordCorrect = await bcrypt.compare(password,user.password)
+    if(!isPasswordCorrect){
+        return res.status(400).json({
+            message:"Invalid credentials"
+        })
+    }
+
+    const token = generateToken(user._id,res)
+    res.status(200).json(token)
+    }
+    catch(error){
+        console.error("Error in login controller\n", error)
+        res.status(500).json({
+            message:"Internal server error"
+        })
+    }
+    
+}
+
+export const logout = async(req,res)=>{
+    res.cookie('jwt',"",{maxAge:0})
+    res.status(200).json({
+        message:"Logged out"
+    })
 }

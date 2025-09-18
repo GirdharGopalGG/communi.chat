@@ -38,6 +38,10 @@ export const signupSchema = z.object({
 })
 
 
-// export const loginSchema = z.object()
+export const loginSchema = z.object({
+    email: z.email({error:"Real email daal"}),
+
+    password: passwordSchema
+})
 
 // export const 
