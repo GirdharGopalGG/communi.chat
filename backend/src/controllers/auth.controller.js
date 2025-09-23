@@ -2,6 +2,7 @@ import { userModel } from "../models/user.model.js"
 import bcrypt from "bcryptjs"
 import { generateToken } from "../lib/jwt.cookie.js"
 import { sendWelcomeEmail } from "../lib/resend.js"
+import {v2 as cloudinary} from 'cloudinary'
 
 
 export const signup = async(req,res)=>{
@@ -20,7 +21,7 @@ export const signup = async(req,res)=>{
         const userExists = await userModel.findOne({email})
 
         if(userExists){
-            return res.status(400).json({
+            return res.status(409).json({
                 message:"User already exists"
             })
         }
@@ -82,4 +83,34 @@ export const logout = async(req,res)=>{
     res.status(200).json({
         message:"Logged out"
     })
+}
+
+//REVIEW LEFT 
+
+export const updateProfile = async(req,res)=>{
+    try{
+    const { profilePic } = req.body
+    if(!profilePic){
+        return res.status(401).json({
+            message:'Profile pic is required'
+        })
+    }
+    const userId = req.user._id
+    const uploadedImage = await cloudinary.uploader.upload(profilePic)
+    const updatedUser = await userModel.findByIdAndUpdate(
+                            userId,
+                            {profilePic:uploadedImage.secure_url}, 
+                            {new:true}
+                        ).select('-password')
+        
+    res.status(200).json({
+        message:"Profile pic updated"
+    },updatedUser)  //TRYING STH NEW
+    }
+    catch(error){
+        console.log("Error in updating profile image in auth controller\n",error)
+        res.status(500).json({
+            message:'Internal server error'
+        })
+    }                      
 }
