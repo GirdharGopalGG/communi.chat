@@ -3,8 +3,11 @@ import { signup, login, logout, updateProfile } from '../controllers/auth.contro
 import { validateRequest } from '../middlewares/validate.js'
 import { loginSchema, signupSchema } from '../validations/auth.validation.js'
 import { authMiddleware } from '../middlewares/authMiddleware.js'
+import { arcjetMiddleware } from '../middlewares/arcjet.middleware.js'
 
-const router = express.Router()
+const router = express.Router() 
+router.use(arcjetMiddleware)
+
 
 router.post('/signup',validateRequest(signupSchema),signup)
 router.post('/login',validateRequest(loginSchema),login)
