@@ -6,8 +6,8 @@ import { authMiddleware } from '../middlewares/authMiddleware.js'
 import { arcjetMiddleware } from '../middlewares/arcjet.middleware.js'
 
 const router = express.Router() 
-router.use(arcjetMiddleware)
 
+// router.use(arcjetMiddleware)
 
 router.post('/signup',validateRequest(signupSchema),signup)
 router.post('/login',validateRequest(loginSchema),login)
