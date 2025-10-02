@@ -1,8 +1,8 @@
 import {Routes, Route, Navigate} from 'react-router'
 
-import ChatPage from "./pages/ChatPage"
-import LoginPage from "./pages/loginPage.jsx"
-import SignupPage from "./pages/signUpPage.jsx"
+import ChatPage from "./pages/ChatPage.jsx"
+import LoginPage from "./pages/LoginPage.jsx"
+import SignupPage from "./pages/SignupPage.jsx"
 import { useAuthStore } from './store/useAuthStore.js'
 import { useEffect } from 'react'
 import LoadingPage from './components/LoadingPage.jsx'
