@@ -1,2 +1,5 @@
 @import "tailwindcss";
 @plugin "daisyui";
+@theme {
+  --color-dark-lavender: #8986B6;
+}

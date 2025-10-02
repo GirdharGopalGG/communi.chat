@@ -39,6 +39,17 @@ export const sendMessage = async(req, res)=>{
         const receiverId = req.params.id
         const {text, image} = req.body
 
+        if(!text && !image){
+            return res.status(400).json({message: "Enter a message"})
+        }
+
+        const receiverExists = await userModel.exists({_id: receiverId})
+        if(!receiverExists){
+            return res.status(404).json({
+                message: "Receiver not found"
+            })
+        }
+        
         let imageUrl
         if(image){
             const uploadResponse = await cloudinary.uploader.upload(image)

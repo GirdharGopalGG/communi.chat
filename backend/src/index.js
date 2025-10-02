@@ -5,6 +5,7 @@ import messageRouter from './routes/message.route.js'
 import path from 'path'
 import { connectDB } from './lib/db.js'
 import cookieParser from 'cookie-parser'
+import cors from 'cors'
 
 dotenv.config()
 
@@ -13,6 +14,7 @@ const app = express()
 
 const __dirname = path.resolve()
 
+app.use(cors({origin:process.env.client_url, credentials:true}))
 app.use(express.json())
 app.use(cookieParser())
 app.use('/api/auth',authRouter)
