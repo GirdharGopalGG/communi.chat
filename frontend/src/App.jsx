@@ -18,7 +18,6 @@ useEffect(()=>{
   checkAuth()
 },[checkAuth])
 
-console.log('authUser: ', authUser)
 
 if(!isLoginChecked){
   return <LoadingPage />
