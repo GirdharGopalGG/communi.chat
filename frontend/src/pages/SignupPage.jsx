@@ -10,7 +10,6 @@ function SignupPage(){
     const {isSigningUp, signUp} = useAuthStore()
 
     const [formData, setFormData] = useState({fullName:'', email:'', password:''})
-    // const {}
 
     const submitForm = (e)=>{
         e.preventDefault()
@@ -27,7 +26,7 @@ function SignupPage(){
                     {/* FORM COLUMN - LEFT SIDE */}
 
                     <div className="md:w-1/2 p-8 flex flex-col items-center justify-center md:border-r border-slate-600/50">
-                        <div className="text-center mb-4">
+                        <div className="text-center mb-8">
                             <MessageCircle className="text-slate-400 mx-auto size-12 mb-4"/>
                             <h2 className="text-2xl text-slate-200 font-bold">Create account</h2>
                             <p className="text-slate-400">Sign up for a new account</p>     
@@ -108,7 +107,7 @@ function SignupPage(){
 
                     {/* form right side */}
                     
-                    
+
                     
                 </div>
                 </BorderAnimatedContainer>
