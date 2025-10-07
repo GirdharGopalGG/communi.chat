@@ -9,7 +9,7 @@ import cors from 'cors'
 
 dotenv.config()
 
-const port = process.env.port || 3000
+const port = process.env.PORT || 3000
 const app = express()
 
 const __dirname = path.resolve()
@@ -18,7 +18,7 @@ app.use(cors({origin:process.env.client_url, credentials:true}))
 app.use(express.json())
 app.use(cookieParser())
 app.use('/api/auth',authRouter)
-app.use('/api/message',messageRouter)
+app.use('/api/message',messageRouter) 
 
 //for deployment on sevalla
 if(process.env.node_env === 'production'){
