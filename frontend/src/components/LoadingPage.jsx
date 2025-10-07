@@ -1,4 +1,4 @@
-import {LoaderPinwheelIcon} from 'lucide-react'
+import {LoaderIcon} from 'lucide-react'
 function LoadingPage(){
     return (
         <div className='overflow-hidden relative'>
@@ -6,7 +6,7 @@ function LoadingPage(){
             
             <span className="h-screen flex items-center justify-center "> 
 
-            <LoaderPinwheelIcon className= 'text-dark-lavender z-10 size-14 animate-spin'/> </span>
+            <LoaderIcon className= 'text-dark-lavender z-10 size-14 animate-spin'/> </span>
 
 
             <div className="absolute inset-0 bg-[linear-gradient(to_right,#4f4f4f2e_1px,transparent_1px),linear-gradient(to_bottom,#4f4f4f2e_1px,transparent_1px)] bg-[size:14px_24px]" />

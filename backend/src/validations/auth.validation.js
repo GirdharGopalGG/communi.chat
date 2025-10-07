@@ -3,8 +3,8 @@ import {z} from 'zod'
 const passwordSchema = z.string()
     .trim()
     .transform(value=>value.replace(/\s+/g, ' ')) 
-    .pipe(z.string().min(1,{error:"password is required"}))
-    .pipe(z.string().min(8,{error:"password must be of 8 characters"}))
+    .pipe(z.string().min(1,{error:"Password is required"}))
+    .pipe(z.string().min(8,{error:"Password must be of 8 characters"}))
     
     .pipe(z.string().refine((password)=>/[A-Z]/.test(password),{
         error: "Password must contain an uppercase"
@@ -31,15 +31,22 @@ export const signupSchema = z.object({
     .pipe(z.string().min(5, {error:"Full name must be at least 5 characters"}))   
     ,
 
-    //LOWERCASE EMAIL💀💀💀
-    email: z.email({error:"Real email daal"}),
+    email: z.email({
+        error:(issue)=>
+            (issue.input
+                ? "Real email daal"
+                : "Email is required"
+            )
+    }),
 
     password: passwordSchema
 })
 
 
 export const loginSchema = z.object({
-    email: z.email({error:"Real email daal"}),
+    email: z.email({
+        error:"Real email daal"
+    }),
 
     password: passwordSchema
 })

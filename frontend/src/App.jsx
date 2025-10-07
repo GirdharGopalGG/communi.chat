@@ -7,6 +7,8 @@ import { useAuthStore } from './store/useAuthStore.js'
 import { useEffect } from 'react'
 import LoadingPage from './components/LoadingPage.jsx'
 
+import {Toaster} from 'react-hot-toast'
+
 
 function App(){
 
@@ -33,10 +35,25 @@ if(!isLoginChecked){
 
 
       <Routes>
-        <Route path= '/' element= { authUser? <ChatPage/> : <Navigate to={"/login"}/> } />
-        <Route path= '/signup' element = {authUser? <Navigate to ={'/'}/> : <SignupPage/>} />
-        <Route path= '/login' element = {authUser? <Navigate to ={'/'}/> : <LoginPage/>} />
+        <Route path= '/' 
+        element= { authUser
+        ? <ChatPage/> 
+        : <Navigate to={"/login"}/> } 
+        />
+        <Route path= '/signup' 
+        element = {authUser
+        ? <Navigate to ={'/'}/> 
+        : <SignupPage/>} 
+        />
+        <Route path= '/login' 
+        element = {authUser
+        ? <Navigate to ={'/'}/> 
+        : <LoginPage/>} 
+        />
       </Routes>
+
+      <Toaster/>
+      
     </div>
   )
 }   
