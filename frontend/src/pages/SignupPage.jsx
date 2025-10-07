@@ -1,11 +1,13 @@
 import { useState } from "react"
 import BorderAnimatedContainer from "../components/Border.jsx"
-import { Loader, Loader2Icon, LockIcon, LucideLoader, MailIcon, MessageCircle, UserIcon } from "lucide-react"
+import { Eye, EyeClosed, Loader, Loader2Icon, LockIcon, LucideLoader, MailIcon, MessageCircle, UserIcon } from "lucide-react"
 import {Link} from 'react-router'
 
 import {useAuthStore} from '../store/useAuthStore.js'
 
 function SignupPage(){
+
+    const [isPasswordVisible,setPasswordVisible] = useState(false)
 
     const {isSigningUp, signUp} = useAuthStore()
 
@@ -72,11 +74,21 @@ function SignupPage(){
                                 <div className="form-signup">
                                     <LockIcon className="size-4 text-slate-400"/>
                                 <input className="outline-hidden w-full" 
-                                type="text"  
+                                type={isPasswordVisible
+                                        ? "text" 
+                                        : "password"
+                                    }  
                                 placeholder="123456😂"
                                 value={formData.password}
                                 onChange={(e)=>setFormData({...formData,password:e.target.value})}
                                 />
+                                <div onClick={()=>setPasswordVisible(!isPasswordVisible)}>
+                                    {isPasswordVisible 
+                                   ?<Eye className="text-slate-400 z-10 cursor-pointer" /> 
+                                   :<EyeClosed className="text-slate-400/75 z-10 cursor-pointer"/>
+                                        
+                                    }
+                                </div>
                                 </div>
                                 </div>
 
