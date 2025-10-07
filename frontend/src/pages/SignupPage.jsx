@@ -1,5 +1,5 @@
 import { useState } from "react"
-import BorderAnimatedContainer from "../components/Border"
+import BorderAnimatedContainer from "../components/Border.jsx"
 import { Loader, Loader2Icon, LockIcon, LucideLoader, MailIcon, MessageCircle, UserIcon } from "lucide-react"
 import {Link} from 'react-router'
 

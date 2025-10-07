@@ -21,7 +21,7 @@ app.use('/api/auth',authRouter)
 app.use('/api/message',messageRouter)
 
 //for deployment on sevalla
-if(process.env.NODE_ENV == 'production'){
+if(process.env.NODE_ENV === 'production'){
     app.use(express.static(path.join(__dirname, "../frontend/dist")))    
 
     app.get("/*splat",(_,res)=>{
