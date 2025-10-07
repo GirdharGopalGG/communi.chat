@@ -9,7 +9,7 @@ import cors from 'cors'
 
 dotenv.config()
 
-const port = process.env.PORT
+const port = process.env.port
 const app = express()
 
 const __dirname = path.resolve()
@@ -21,7 +21,7 @@ app.use('/api/auth',authRouter)
 app.use('/api/message',messageRouter)
 
 //for deployment on sevalla
-if(process.env.NODE_ENV === 'production'){
+if(process.env.node_env === 'production'){
     app.use(express.static(path.join(__dirname, "../frontend/dist")))    
 
     app.get("/*splat",(_,res)=>{

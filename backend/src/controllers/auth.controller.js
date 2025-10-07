@@ -36,7 +36,7 @@ export const signup = async(req,res)=>{
             })
 
             try {
-                sendWelcomeEmail(newUser.email,newUser.fullName,process.env.client_Url)
+                sendWelcomeEmail(newUser.email,newUser.fullName,process.env.client_url)
             } catch (error) {
                 console.log("failed to send welcome email\n", error)
             }
