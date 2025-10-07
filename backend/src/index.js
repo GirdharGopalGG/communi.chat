@@ -9,7 +9,7 @@ import cors from 'cors'
 
 dotenv.config()
 
-const port = process.env.port
+const port = process.env.port || 3000
 const app = express()
 
 const __dirname = path.resolve()
@@ -30,6 +30,6 @@ if(process.env.node_env === 'production'){
 }
 
 app.listen(port,()=>{
-    console.log(`listening to port ${port}`)
+    console.log(`Server running on port ${port}`)
     connectDB()
 })
