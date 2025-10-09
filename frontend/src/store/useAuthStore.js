@@ -8,6 +8,7 @@ export const useAuthStore = create((set)=>({
     isLoginChecked: false,
 
     isSigningUp:false,
+    isLoggingUp:false,
         
 
     checkAuth: async ()=>{
@@ -23,55 +24,54 @@ export const useAuthStore = create((set)=>({
         }
     },
 
-    // signUp: async (data)=>{
-    //     set({isSigningUp: true})
-
-    //     try {
-    //         const res = await axiosInstance.post('/auth/signup',data)
-    //         set({authUser: res.data})
-            
-            
-    //         toast.success('Account created successfully')
-            
-    //     } catch (error) {
-    //         toast.error(error.response?.data?.message || 'No response from server. Check your connection.')
-
-    //         console.error('Error in signUp function in AuthStore\n',error.message)
-    //     } finally {
-    //         set({isSigningUp: false})
-
-    //     }
-        
-    // }
-
     signUp: async (data)=>{
-    set({isSigningUp: true})
+        set({isSigningUp: true})
 
-    try {
-        const res = await axiosInstance.post('/auth/signup',data)
-        set({authUser: res.data})
-        
-        toast.success('Account created successfully')
-        
-    } catch (error) {
-        // Check if error.response exists before accessing it
-        if (error.response) {
-            // Server responded with error status (4xx, 5xx)
-            toast.error(error.response.data.message)
-        } else if (error.request) {
-            // Request made but no response received
-            toast.error('No response from server. Check your connection.')
-        } else {
-            // Error in request setup
-            toast.error('Failed to send request')
+        try {
+            const res = await axiosInstance.post('/auth/signup',data)
+            set({authUser: res.data})
+            
+            toast.success('Account created')
+            
+        } catch (error) {
+            toast.error(error.response?.data?.message || 'No response from server. Check your connection.')
+            console.error('Error in signUp function in AuthStore\n',error.message)
+
+        } finally {
+            set({isSigningUp: false})
         }
-        console.error('Error in signUp function in AuthStore\n',error.message)
-    } finally {
-        set({isSigningUp: false})
-    }
-}
+    },
 
-    
+    login: async(data)=>{
+        set({isLoggingUp:true})
+
+        try{
+            const res = await axiosInstance.post('/auth/login',data)
+            set({authUser:res.data})
+            toast.success('You are logged in')
+
+        }catch(error){
+            toast.error(error.response?.data?.message)
+            console.error('Error in Login function in AuthStore\n',error.message)
+            
+        }finally{
+            set({isLoggingUp:false})
+        }
+    },
+
+
+    logout: async()=>{
+        try {
+            await axiosInstance.post('/auth/logout')
+            set({
+                authUser:null
+            })
+            toast.success('Logged out')
+        } catch (error) {
+            toast.error('Error logging out')
+            console.error('Error in Logout function in useAuthStore',error.message)
+        }
+    }    
     
 }))
 

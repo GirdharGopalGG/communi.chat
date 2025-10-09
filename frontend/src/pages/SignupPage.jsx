@@ -1,6 +1,6 @@
 import { useState } from "react"
 import BorderAnimatedContainer from "../components/Border.jsx"
-import { Eye, EyeClosed, Loader, Loader2Icon, LockIcon, LucideLoader, MailIcon, MessageCircle, UserIcon } from "lucide-react"
+import { Eye, EyeClosed, Loader, LockIcon,  MailIcon, MessageCircle, UserIcon } from "lucide-react"
 import {Link} from 'react-router'
 
 import {useAuthStore} from '../store/useAuthStore.js'
@@ -30,8 +30,8 @@ function SignupPage(){
                     <div className="md:w-1/2 p-8 flex flex-col items-center justify-center md:border-r border-slate-600/50">
                         <div className="text-center mb-8">
                             <MessageCircle className="text-slate-400 mx-auto size-12 mb-4"/>
-                            <h2 className="text-2xl text-slate-200 font-bold">Create account</h2>
-                            <p className="text-slate-400">Sign up for a new account</p>     
+                            <div className="text-2xl text-slate-200 font-bold cursor-default">Create account</div>
+                            <div className="text-slate-400 cursor-default">Sign up for a new account</div>     
                         </div>
 
                         <div className=" w-full px-10">
@@ -84,8 +84,8 @@ function SignupPage(){
                                 />
                                 <div onClick={()=>setPasswordVisible(!isPasswordVisible)}>
                                     {isPasswordVisible 
-                                   ?<Eye className="text-slate-400 z-10 cursor-pointer" /> 
-                                   :<EyeClosed className="text-slate-400/75 z-10 cursor-pointer"/>
+                                   ? <Eye className="text-slate-400 z-10 cursor-pointer" /> 
+                                   : <EyeClosed className="text-slate-400/75 z-10 cursor-pointer"/>
                                         
                                     }
                                 </div>
@@ -110,16 +110,32 @@ function SignupPage(){
 
                         </div>
 
-                            <div className="auth-redirect">
                                 <Link to="/login">
+                            <div className="auth-redirect">
                                 Already have an account? Login
-                                </Link>
                             </div>
+                                </Link>
                     </div>
 
                     {/* form right side */}
                     
-
+                    <div className="pt-0  hidden md:flex flex-col w-1/2 p-6 items-center justify-center">
+                        <div className="relative overflow-hidden">
+                            <img src="signup.png" alt="" 
+                            className="-top-10 relative overflow-hidden" 
+                            />
+                        </div>
+                        <div className="-top-6 relative">
+                            <div className="text-2xl pb-4 text-cyan-400/70 cursor-default font-semibold">
+                                    Chat freely, Privacy in your hands
+                            </div>
+                            <div className="flex gap-12 justify-center ">
+                                <div className="auth-badge">Free</div>
+                                <div className="auth-badge">Encrypted</div>
+                                <div className="auth-badge">Open Source</div>
+                            </div>
+                        </div>
+                    </div>
                     
                 </div>
                 </BorderAnimatedContainer>
