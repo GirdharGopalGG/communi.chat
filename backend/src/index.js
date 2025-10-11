@@ -17,6 +17,7 @@ const __dirname = path.resolve()
 app.use(cors({origin:process.env.client_url, credentials:true}))
 app.use(express.json())
 app.use(cookieParser())
+
 app.use('/api/auth',authRouter)
 app.use('/api/message',messageRouter) 
 

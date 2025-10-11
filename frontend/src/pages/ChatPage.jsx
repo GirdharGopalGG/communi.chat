@@ -9,7 +9,7 @@ function ChatPage(){
         <div className="  text-shadow-pink-600 text-red-400 text-5xl  text-shadow-lg m-4 font-semibold">
            < div className=" text-2xl animate-bounce pb-4"> Chat Page</div> coming sooooon!!!!!!!!!
             TYSMMMMMMMMM <span className="text-3xl ">for logging in</span> <div className=" pt-8 text-7xl  animate-ping-smooth transition-all duration-200 ">💖💖</div>
-        </div>
+        </div>  
         <div>
             <button onClick={logout}
             className="auth-btn ">Logout</button>

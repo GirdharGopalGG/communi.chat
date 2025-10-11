@@ -24,9 +24,10 @@ export const getMessageByUserId = async(req, res)=>{
 
 export const getAllContacts = async(req, res)=>{
     try{
-    const loggedInUser = req.user._id
-    const filteredUsers = await userModel.find({_id:{$ne: loggedInUser}}).select('-password')
-    res.status(200).json(filteredUsers)
+        const loggedInUser = req.user._id
+        const filteredUsers = await userModel.find({_id:{$ne: loggedInUser}}).select('-password')
+        res.status(200).json(filteredUsers)
+        
     }catch(error){
         console.error('Error in getAllContacts message controller\n',error)
         res.status(500).json({message:"Internal server error"})
