@@ -7,7 +7,7 @@ export const useChatStore = create((set,get)=>({
     chats: [],
     messages: [],
     activeTab: "chats",
-    selectedUser: null,
+    selectedUser: localStorage.getItem('selectedUser') || null,
     isMessageLoading: false,
     isUserLoading:false,
 
@@ -23,6 +23,7 @@ export const useChatStore = create((set,get)=>({
     },
 
     setSelectedUser: (user)=>{
+        localStorage.setItem('selectedUser',user)
         set({ selectedUser:user })
     },
 

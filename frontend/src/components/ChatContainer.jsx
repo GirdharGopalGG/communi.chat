@@ -1,0 +1,14 @@
+function ChatContainer(){
+    return (
+        <div>
+            <div className="absolute p-4 pr-16 w-full flex gap-4 items-center justify-center bottom-0">
+                <input type="text" className="w-full outline-1 outline-cyan-800/70 rounded-xl h-10"/>
+                <div>
+                    <Send/>
+                </div>
+            </div>
+        </div>
+    )
+}
+
+export default ChatContainer
