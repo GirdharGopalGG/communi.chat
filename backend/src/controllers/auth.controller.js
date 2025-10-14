@@ -54,7 +54,7 @@ export const login = async(req, res)=>{
     const {email, password} = req.body
     
     try{
-    const user = await userModel.findOne({email})
+    const user = await userModel.findOne({email}).select('-password')
     if(!user){
         return res.status(400).json({
             message:"Invalid credentials"
@@ -68,7 +68,7 @@ export const login = async(req, res)=>{
     }
 
     const token = generateToken(user._id,res)
-    res.status(200).json(token)
+    res.status(200).json(user)
     }
     catch(error){
         console.error("Error in login controller\n", error)

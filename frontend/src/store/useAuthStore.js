@@ -2,7 +2,7 @@ import toast from 'react-hot-toast'
 import {axiosInstance} from '../lib/axios'
 import {create} from 'zustand'
 
-export const useAuthStore = create((set)=>({
+export const useAuthStore = create((set, get)=>({
 
     authUser: null,
     isLoginChecked: false,
@@ -15,7 +15,6 @@ export const useAuthStore = create((set)=>({
         try {
             const res = await axiosInstance.get('/auth/check')
             set({authUser: res.data, })
-            
 
         } catch (error) {
             console.error('Error in checkAuth in useAuthStore\n',error.message)
@@ -31,7 +30,7 @@ export const useAuthStore = create((set)=>({
         try {
             const res = await axiosInstance.post('/auth/signup',data)
             set({authUser: res.data})
-            
+            await get().checkAuth()
             toast.success('Account created')
             
         } catch (error) {
@@ -47,9 +46,10 @@ export const useAuthStore = create((set)=>({
         set({isLoggingUp:true})
 
         try{
+            
             const res = await axiosInstance.post('/auth/login',data)
             set({authUser:res.data})
-            toast.success('You are logged in')
+            toast.success('Logged In')
 
         }catch(error){
             toast.error(error.response?.data?.message)
@@ -67,7 +67,7 @@ export const useAuthStore = create((set)=>({
             set({
                 authUser:null
             })
-            toast.success('Logged out')
+            toast.success('Logged Out')
         } catch (error) {
             toast.error('Error logging out')
             console.error('Error in Logout function in useAuthStore',error.message)

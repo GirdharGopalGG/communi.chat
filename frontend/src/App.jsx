@@ -1,4 +1,4 @@
-import {Routes, Route, Navigate} from 'react-router'
+import {Routes, Route, Navigate, } from 'react-router'
 
 import ChatPage from "./pages/ChatPage.jsx"
 import LoginPage from "./pages/LoginPage.jsx"

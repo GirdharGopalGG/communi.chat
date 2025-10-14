@@ -1,7 +1,14 @@
 function ActiveTabSwitch(){
     return (
-        <div>
-            ActiveTabSwitch
+        <div className="p-4">
+            <div className="flex items-center justify-between px-auto ">
+                <div className="activeTab">
+                    Chats
+                </div>
+                <div className="activeTab">
+                    Contacts
+                </div>
+            </div>
         </div>
     )
 }
