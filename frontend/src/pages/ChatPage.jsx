@@ -4,7 +4,6 @@ import ProfileHeader from "../components/ProfileHeader"
 import ActiveTabSwitch from "../components/ActiveTabSwitch"
 import ChatList from "../components/ChatList"
 import ContactList from "../components/ContactList"
-import { Send } from "lucide-react"
 import ChatContainer from "../components/ChatContainer"
 import NoChatPlaceholder from "../components/NoChatPlaceholder"
 
@@ -21,7 +20,7 @@ function ChatPage(){
                     <ProfileHeader/>
                     <ActiveTabSwitch/>
 
-                    <div className="flex-1 overflow-y-auto p-4 gap-2">
+                    <div className="flex-1 overflow-y-auto py-4 gap-2">
                         {activeTab==='chats'
                             ?   <ChatList/>
                             :   <ContactList/>

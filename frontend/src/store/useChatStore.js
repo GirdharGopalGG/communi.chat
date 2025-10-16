@@ -5,13 +5,11 @@ import  toast  from "react-hot-toast";
 export const useChatStore = create((set,get)=>({
     allContacts: [],
     chats: [],
-    messages: [],
     activeTab: "chats",
     selectedUser: localStorage.getItem('selectedUser') || null,
     isMessageLoading: false,
     isUserLoading:false,
-
-    isSoundEnabled: localStorage.getItem('sound') === true? true:false,
+    isSoundEnabled: JSON.parse(localStorage.getItem('sound')) === true? true:false,
 
     toggleSound: ()=>{
        localStorage.setItem('sound',!get().isSoundEnabled)
@@ -58,7 +56,7 @@ export const useChatStore = create((set,get)=>({
                 chats: res.data
             })  
         }catch(error){
-            toast.error('Error fetching users')
+            toast.error('Error fetching chat partner')
             console.error('Error in getChatPartners in useChatStore',error.message)
         }finally{
             set({

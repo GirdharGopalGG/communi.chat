@@ -79,14 +79,19 @@ export const sendMessage = async(req, res)=>{
 
 export const getChatPartner = async(req, res)=>{
     try{    
+
         const loggedInUserId = req.user._id
         const messages = await messageModel.find({
             $or:[
                 {senderId: loggedInUserId},
                 {receiverId: loggedInUserId}
             ]
-        })
+        }) ?? []
 
+        if (!Array.isArray(messages) || messages.length === 0) {
+            return res.status(200).json([]) // no chat partners
+        }
+        
         const chatPartnerIds = messages.map((m)=>
                 m.senderId.toString() === loggedInUserId.toString()
                     ? m.receiverId.toString()
@@ -100,6 +105,7 @@ export const getChatPartner = async(req, res)=>{
         }).select('-password')
         
         res.status(200).json(chatPartners)
+
         
     }catch(error){
         console.error('Error in getChatPartner controller\n',error.message)

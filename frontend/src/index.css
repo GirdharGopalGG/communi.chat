@@ -21,21 +21,22 @@
   --animate-border: border 4s linear infinite;
 
   @keyframes ping-smooth {
-  0% {
-    transform: scale(0.1);
-    opacity: 0.8;
+    0% {
+      transform: scale(0.1);
+      opacity: 0.8;
+    }
+    50% {
+      transform: scale(1.5);
+      opacity: 0.4;
+    }
+    100% {
+      transform: scale(2);
+      opacity: 0;
+    }
   }
-  50% {
-    transform: scale(1.5);
-    opacity: 0.4;
-  }
-  100% {
-    transform: scale(2);
-    opacity: 0;
-  }
-}
   
   --animate-ping-smooth: ping-smooth 1.3s cubic-bezier(0, 0, 0.7, 1) infinite;
+  --animate-spin-slow: spin 2s linear infinite;
 }
 
 @layer components {

@@ -2,7 +2,7 @@ import { userModel } from "../models/user.model.js"
 import bcrypt from "bcryptjs"
 import { generateToken } from "../lib/jwt.cookie.js"
 import { sendWelcomeEmail } from "../lib/resend.js"
-import {v2 as cloudinary} from 'cloudinary'
+import cloudinary from '../lib/cloudinary.js'
 
 
 export const signup = async(req,res)=>{
@@ -54,7 +54,7 @@ export const login = async(req, res)=>{
     const {email, password} = req.body
     
     try{
-    const user = await userModel.findOne({email}).select('-password')
+    const user = await userModel.findOne({email})
     if(!user){
         return res.status(400).json({
             message:"Invalid credentials"
@@ -68,7 +68,11 @@ export const login = async(req, res)=>{
     }
 
     const token = generateToken(user._id,res)
-    res.status(200).json(user)
+    res.status(200).json({
+        fullName: user.fullName,
+        email: user.email,
+        profilePic: user.profilePic
+    })
     }
     catch(error){
         console.error("Error in login controller\n", error)
@@ -85,8 +89,6 @@ export const logout = async(req,res)=>{
         message:"Logged out"
     })
 }
-
-//REVIEW LEFT 
 
 export const updateProfile = async(req,res)=>{
     try{
@@ -109,7 +111,7 @@ export const updateProfile = async(req,res)=>{
     },updatedUser)  //TRYING STH NEW
     }
     catch(error){
-        console.log("Error in updating profile image in auth controller\n",error)
+        console.log("Error in updating profile image in auth controller\n",error.message)
         res.status(500).json({
             message:'Internal server error'
         })
