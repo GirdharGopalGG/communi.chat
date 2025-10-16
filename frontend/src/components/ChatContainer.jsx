@@ -1,5 +1,5 @@
 import { SendHorizonalIcon } from "lucide-react"
-import NoChatHistoryPlaceholder from "./NoChatHistoryPlaceholder"
+import NoChatHistoryPlaceholder from "./NoChatPlaceholder"
 
 function ChatContainer(){
 
