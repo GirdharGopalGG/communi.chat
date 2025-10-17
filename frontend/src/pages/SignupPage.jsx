@@ -122,7 +122,7 @@ function SignupPage(){
                     <div className="pt-0  hidden md:flex flex-col w-1/2 p-6 items-center justify-center">
                         <div className="relative overflow-hidden">
                             <img src="signup.png" alt="" 
-                            className="-top-10 relative overflow-hidden" 
+                            className="-top-10 relative overflow-hidden size-full object-cover" 
                             />
                         </div>
                         <div className="-top-6 relative">

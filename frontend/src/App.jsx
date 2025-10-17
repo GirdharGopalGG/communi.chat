@@ -12,11 +12,11 @@ import {Toaster} from 'react-hot-toast'
 
 function App(){
 
-const {authUser, checkAuth, isLoginChecked} = useAuthStore()
+const {authUser, checkAuth, isLoginChecked,updateProfile} = useAuthStore()
 
 useEffect(()=>{
   checkAuth()
-},[checkAuth])
+},[checkAuth,updateProfile])
 
 
 if(!isLoginChecked){
@@ -25,7 +25,7 @@ if(!isLoginChecked){
   
   return (
     
-    <div className='relative overflow-hidden flex items-center h-screen justify-center bg-slate-900'>
+    <div className='relative overflow-hidden flex items-center min-h-screen justify-center bg-slate-900'>
 
       
       <div className="absolute inset-0 bg-[linear-gradient(to_right,#4f4f4f2e_1px,transparent_1px),linear-gradient(to_bottom,#4f4f4f2e_1px,transparent_1px)] bg-[size:14px_24px]" />

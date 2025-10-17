@@ -16,11 +16,11 @@ function ChatPage(){
             <BorderAnimatedContainer>
                 {/* left side */}
 
-                <div className="w-80 bg-slate-800/50 flex flex-col ">
+                <div className="w-[400px] bg-slate-800/50 flex flex-col border-r border-slate-700/50 ">
                     <ProfileHeader/>
                     <ActiveTabSwitch/>
 
-                    <div className="flex-1 overflow-y-auto py-4 gap-2">
+                    <div className="flex overflow-y-auto py-4 gap-2">
                         {activeTab==='chats'
                             ?   <ChatList/>
                             :   <ContactList/>
@@ -32,10 +32,8 @@ function ChatPage(){
 
                 {/* Right side */}
 
-                <div className="relative w-full flex flex-col items-center justify-center">
-                    <div>
+                <div className="w-full h-full ">
                         {selectedUser? <ChatContainer/> : <NoChatPlaceholder/>}
-                    </div>
                     
                 </div>
 

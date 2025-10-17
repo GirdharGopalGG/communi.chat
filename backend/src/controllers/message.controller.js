@@ -1,6 +1,6 @@
 import { messageModel } from "../models/message.model.js"
 import { userModel } from "../models/user.model.js"
-import cloudinary from 'cloudinary'
+import cloudinary from '../lib/cloudinary.js'
 
 
 export const getMessageByUserId = async(req, res)=>{
@@ -17,7 +17,7 @@ export const getMessageByUserId = async(req, res)=>{
         res.status(200).json(chats)
         
     }catch(error){
-        console.error('Error in getMessageByUserId controller\n',error.message)
+        console.error('Error in getMessageByUserId controller\n',error)
         res.status(500).json({message:'Internal server error'})
     }
 }

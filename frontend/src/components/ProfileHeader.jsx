@@ -31,7 +31,7 @@ function ProfileHeader(){
     
     
     return (
-        <div className="flex items-center justify-center py-8 border-b border-slate-600  ">
+        <div className="flex items-center  justify-center py-4 border-b border-slate-700/50 bg-slate-800  ">
             <div className="flex justify-between w-full px-5">
                 <div className='flex justify-center '>
 
@@ -73,7 +73,7 @@ function ProfileHeader(){
 
                     <div className="flex flex-col pl-4 justify-center ">
                         <div className='truncate'>
-                            {authUser.fullName?? <div className="h-4 w-20 bg-slate-600 rounded animate-pulse" />} 
+                            {authUser.fullName?? <div className="h-4 w-20 bg-slate-600 rounded animate-pulse-fast" />} 
                         </div>
                         <div className='text-slate-300/80 text-sm'>
                             {authUser
@@ -89,7 +89,7 @@ function ProfileHeader(){
                     </div>  
                     <div 
                         onClick={()=>{
-                            mouseClickSound.play().catch((error)=>console.log("MouseClick audio failed",error))
+                            mouseClickSound.play().catch((error)=>console.error("MouseClick audio failed",error))
                             toggleSound()
                         }}>
                         {isSoundEnabled 
