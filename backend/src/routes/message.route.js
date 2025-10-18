@@ -5,7 +5,8 @@ import { arcjetMiddleware } from "../middlewares/arcjet.middleware.js";
 
 const router = express.Router()
 
-router.use(arcjetMiddleware, authMiddleware)
+router.use(arcjetMiddleware)
+router.use(authMiddleware)
 
 router.get('/contacts',  getAllContacts)
 router.get('/chats',  getChatPartner)

@@ -54,7 +54,7 @@ function ProfileHeader(){
                 alt="User image"
                 className="size-full object-cover "
             />
-            <div className="absolute inset-0 bg-black/40 opacity-0 hover:opacity-100 flex items-center justify-center transition ease-in duration-200 rounded-full size-14">
+            <div className="cursor-pointer absolute inset-0 bg-black/40 opacity-0 hover:opacity-100 flex items-center justify-center transition ease-in duration-200 rounded-full size-14">
                 <span className="text-white text-xs">Change</span>
             </div>
             </>
@@ -72,10 +72,10 @@ function ProfileHeader(){
     </div>
 
                     <div className="flex flex-col pl-4 justify-center ">
-                        <div className='truncate'>
+                        <div className='truncate cursor-default'>
                             {authUser.fullName?? <div className="h-4 w-20 bg-slate-600 rounded animate-pulse-fast" />} 
                         </div>
-                        <div className='text-slate-300/80 text-sm'>
+                        <div className='text-slate-300/80 text-sm  cursor-default'>
                             {authUser
                                 ? 'Online'
                                 : 'Offline' (<span><Loader2 className='animate-spin size-5'/></span>)
