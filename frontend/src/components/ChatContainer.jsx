@@ -102,7 +102,6 @@ const isSameDay = (date1, date2) => {
             })}
         </div>
 
-        <MessageInput/>
     </div>
 
     )
@@ -113,6 +112,7 @@ const isSameDay = (date1, date2) => {
 
     
     
+    <MessageInput/>
     </div>
 )}
 
