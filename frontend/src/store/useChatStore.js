@@ -24,6 +24,7 @@ export const useChatStore = create((set,get)=>({
     setSelectedUser: (user)=>{
         localStorage.setItem('selectedUser',JSON.stringify(user))
         set({ selectedUser:user })
+        console.log('setSelectedUser func in useChatStore ran ')
     },
 
     getAllContacts: async()=>{

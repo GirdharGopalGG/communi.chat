@@ -1,6 +1,7 @@
 import toast from 'react-hot-toast'
 import {axiosInstance} from '../lib/axios'
 import {create} from 'zustand'
+import { useChatStore } from './useChatStore'
 
 export const useAuthStore = create((set, get)=>({
 
@@ -50,6 +51,7 @@ export const useAuthStore = create((set, get)=>({
             
             const res = await axiosInstance.post('/auth/login',data)
             set({authUser:res.data})
+            await get().checkAuth()
             toast.success('Logged In')
 
         }catch(error){
@@ -68,6 +70,8 @@ export const useAuthStore = create((set, get)=>({
             set({
                 authUser:null
             })
+            localStorage.removeItem('selectedUser')
+            useChatStore.setState({ selectedUser: null })
             toast.success('Logged Out')
         } catch (error) {
             toast.error('Error logging out')

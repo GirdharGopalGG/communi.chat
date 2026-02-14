@@ -1,10 +1,10 @@
-import { ImagePlusIcon, Loader, SendHorizonalIcon } from "lucide-react"
 import NoChatHistoryPlaceholder from "./NoChatHistoryPlaceholder"
 import { useChatStore } from "../store/useChatStore"
 import { useAuthStore } from "../store/useAuthStore"
 import { useEffect } from "react"
 import ChatHeader from "./ChatHeader"
 import MessagesLoadingSkeleton from "./MessagesLoadingSkeleton"
+import MessageInput from "./MessageInput"
 
 function ChatContainer(){
 
@@ -12,7 +12,9 @@ function ChatContainer(){
     const {authUser} = useAuthStore()
 
     useEffect(()=>{
-        getMessageByUserId(selectedUser._id)
+        if (selectedUser && selectedUser._id) {
+            getMessageByUserId(selectedUser._id)
+        }
     },[getMessageByUserId,selectedUser])
     
    // Helper function to format date labels
@@ -66,6 +68,7 @@ const isSameDay = (date1, date2) => {
 
                   return(
                     <div key={m._id}>
+                    {console.log(`authUser Id: :,${authUser._id} ,\n m.sender id: ${m.senderId}`)}
                     {showDateSeparator && (
                         <div className="flex justify-center my-4">
                             <div className="bg-slate-900/50 text-slate-300 px-3 py-1 rounded-lg text-xs font-medium cursor-default">
@@ -99,25 +102,12 @@ const isSameDay = (date1, date2) => {
             })}
         </div>
 
-        <div className="flex-shrink-0 p-4 w-full flex gap-4 items-center border-t border-slate-700/50">
-            <input 
-                type="text" 
-                className="w-full outline-1 outline-cyan-800/70 rounded-xl h-10 px-3"
-            />
-            <div className="flex gap-4 justify-center items-center">
-                <div >
-                    <ImagePlusIcon className="size-6 cursor-pointer"/>
-                </div>
-                <div>
-                    <SendHorizonalIcon className="size-6 cursor-pointer"/>
-                </div>
-            </div>
-        </div>
+        <MessageInput/>
     </div>
 
     )
     :
-    (<NoChatHistoryPlaceholder name={selectedUser.fullName}/>)
+    (<NoChatHistoryPlaceholder name={selectedUser?.fullName}/>)
 
     }
 

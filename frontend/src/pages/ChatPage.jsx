@@ -5,11 +5,11 @@ import ActiveTabSwitch from "../components/ActiveTabSwitch"
 import ChatList from "../components/ChatList"
 import ContactList from "../components/ContactList"
 import ChatContainer from "../components/ChatContainer"
-import NoChatPlaceholder from "../components/NoChatPlaceholder"
+import NoConversationPlaceholder from "../components/NoConversationPlaceholder"
 
 function ChatPage(){
 
-    const {activeTab,selectedUser } = useChatStore()
+    const {activeTab, selectedUser } = useChatStore()
     
     return(
         <div className="  w-full h-[750px] max-w-6xl z-10">
@@ -33,7 +33,10 @@ function ChatPage(){
                 {/* Right side */}
 
                 <div className="w-full h-full ">
-                        {selectedUser? <ChatContainer/> : <NoChatPlaceholder/>}
+                        {selectedUser 
+                            ? <ChatContainer/> 
+                            : <NoConversationPlaceholder/>
+                        }
                     
                 </div>
 
