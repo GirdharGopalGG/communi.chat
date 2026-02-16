@@ -20,7 +20,7 @@ function ChatPage(){
                     <ProfileHeader/>
                     <ActiveTabSwitch/>
 
-                    <div className="flex overflow-y-auto py-4 gap-2">
+                    <div className="flex flex-col overflow-y-auto py-4 gap-2">
                         {activeTab==='chats'
                             ?   <ChatList/>
                             :   <ContactList/>

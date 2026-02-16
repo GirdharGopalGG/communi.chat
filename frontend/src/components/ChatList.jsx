@@ -30,7 +30,9 @@ function ChatList(){
         >
           <div className="flex items-center gap-3 pl-4">
               <div className="size-12 rounded-full ml-2">
-                <img src={chat.profilePic || "/avatar.png"} alt={chat.fullName} />
+                <img src={chat.profilePic || "/avatar.png"} alt={chat.fullName} 
+                className="size-full object-cover rounded-full"
+                />
               </div>
             </div>
             <h4 className="text-slate-200 font-medium truncate">{chat.fullName}</h4>
